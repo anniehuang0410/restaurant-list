@@ -1,9 +1,27 @@
-// Require express and express handlebars, Define port
+// Require express and express handlebars
 const express = require('express')
-const app = express()
-const port = 3000
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
+
 const restaurantList = require('./restaurant.json')
+
+// only use in unproductive environment
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const app = express()
+// connect to database
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+
+// check database connection
+const db = mongoose.connection
+db.on('error', () => {
+  console.log('MongoDB error!')
+})
+db.once('open', () => {
+  console.log('MongoDB connected!')
+})
 
 // set routing
 app.get('/', (req, res) => {
@@ -29,6 +47,6 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 // listen and start the server
-app.listen(port, () => {
-  console.log(`This server is listening to http://localhost:${port}`)
+app.listen(3000, () => {
+  console.log(`This server is listening to http://localhost:3000`)
 })
