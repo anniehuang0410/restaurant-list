@@ -36,7 +36,7 @@ app.use(express.static('public'))
 
 // set routing on index page
 app.get('/', (req, res) => {
-  Restaurant.find()
+  return Restaurant.find()
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.log(error))
@@ -58,7 +58,7 @@ app.post('/restaurants', (req, res) => {
   const google_map = source.google_map
   const rating = source.rating
   const description = source.description
-  Restaurant.create({name, name_en, category, image, location, phone, google_map, rating, description})
+  return Restaurant.create({name, name_en, category, image, location, phone, google_map, rating, description})
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -119,11 +119,23 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
-/*app.get('/search', (req, res) => {
+// add search by name function
+app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(req.query.keyword.toLowerCase()))
-  res.render('index', { restaurant: restaurants, keyword: keyword })
-})*/
+  const restaurant = [] 
+
+  return Restaurant.find()
+    .lean()
+    .then(restaurants => {
+        restaurants.filter(data => {
+          if (data.name.toLowerCase().includes(keyword.trim().toLowerCase())) {
+            restaurant.push(data)
+          }
+      })
+      res.render('index', { restaurant, keyword })
+    })
+    .catch(error => console.log(error))
+})
 
 // listen and start the server
 app.listen(3000, () => {
