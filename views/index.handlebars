@@ -42,12 +42,11 @@
             </div>
           </a>
           <div class="d-flex justify-content-end">
-            <a href="./restaurants/{{this._id}}" class="p-1">看更多...</a>
-            <span class="p-1 mx-1">修改
-              <link href="./edit.handlebars">
-            </span>
-          
-          
+            <a href="./restaurants/{{this._id}}" class="p-1 link-primary">看更多...</a>
+            <a href="./restaurants/{{this._id}}/edit" class="p-1 mx-1 link-secondary">修改</a>
+            <form action="">
+              <button type="submit" class="py-0 px-1 ml-1 btn btn-secondary">刪除</button>
+            </form>
           </div>
         </div>
         {{/each}}

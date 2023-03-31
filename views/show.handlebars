@@ -5,6 +5,14 @@
 
       <p class="mb-1">
         <span class="text-secondary">
+          <i class="fas fa-star fa-xs"></i>
+          評價：
+        </span>
+        {{restaurant.rating}}
+      </p>
+
+      <p class="mb-1">
+        <span class="text-secondary">
           <i class="fas fa-utensils pr-2"></i>
           類別：
         </span>
@@ -38,5 +46,11 @@
         src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
     </div>
+  </div>
+  <div>
+    <form action="/restaurants/{{restaurant._id}}/edit" class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-secondary mx-2">修改</button>
+      <a href="/" class="btn btn-primary">回主頁</a>
+    </form>
   </div>
 </div>
