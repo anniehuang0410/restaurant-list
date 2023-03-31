@@ -3,11 +3,15 @@ A simple webpage written in Express.js on Node.js.
 The webpage only shows the list of restaurants.
 
 ## Views
-![index page] (https://i.imgur.com/jUpm1Wd.png)
+![index page](https://github.com/anniehuang0410/restaurant-list/blob/main/public/img/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202023-03-22%20%E4%B8%8B%E5%8D%884.24.41.png)
 
 ## Features
-+ Click the name/image to show more details about the restaurant
-+ Type in the name or the category of the restaurant in the search bar to get more information
++ Show the restaurant list 
++ Press the name/image or '看更多...' button to show more details about the restaurant
++ Press '修改' button to edit the information
++ Press '刪除' button to delete the item
++ Press '新增' button to add new items on the list  
++ Type in the name of the restaurant in the search bar to get more information
 
 ## Installation
 1. Turn on your terminal and clone this project to your local PC
@@ -36,4 +40,4 @@ The Express server is running on http://localhost:3000
 ```
 
 ## Contributor
-[Annie Huang] (https://github.com/anniehuang0410)
+[Annie Huang](https://github.com/anniehuang0410)
