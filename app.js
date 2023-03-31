@@ -128,6 +128,7 @@ app.get('/search', (req, res) => {
     .lean()
     .then(restaurants => {
         restaurants.filter(data => {
+          console.log(data.category)
           if (data.name.toLowerCase().includes(keyword.trim().toLowerCase())) {
             restaurant.push(data)
           }
