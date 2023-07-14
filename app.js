@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 const PORT = 3000
 
 // require data
-const restaurantList = require('./restaurant.json')
+const Restaurant = require('./models/restaurant')
 
 // require express-handlebars
 const exphbs = require('express-handlebars')
@@ -38,11 +38,14 @@ app.use(express.static('public'))
 
 // set server
 app.get('/', (req, res) => {
-  res.render('index', { restaurant })
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(err => console.log(err))
 })
 
 // show details
-app.get('/restaurants/:restaurant_id', (req, res) => {
+/*app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(res => 
     res.id.toString() === req.params.restaurant_id
   )
@@ -56,7 +59,7 @@ app.get('/search', (req, res) => {
     restaurant.name.toLowerCase().includes(keyword.toLowerCase())
   )
   res.render('index', { restaurant : filteredRestaurants, keyword })
-})
+})*/
 
 // listen to the server
 app.listen(PORT, () => {
