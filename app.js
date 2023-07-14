@@ -1,13 +1,34 @@
 // require express
 const express = require('express')
+const mongoose = require('mongoose')
+
+// 在非正式環境時使用 dotenv
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+// use modules
 const app = express()
-const port = 3000
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+
+// port
+const PORT = 3000
 
 // require data
 const restaurantList = require('./restaurant.json')
 
 // require express-handlebars
 const exphbs = require('express-handlebars')
+
+// 資料庫連線狀態
+const db = mongoose.connection
+db.on('error', () => {
+  console.log('MongoDB error.')
+})
+db.once('open', () => {
+  console.log('MondoDB connected.')
+})
+
 // set engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -39,6 +60,6 @@ app.get('/search', (req, res) => {
 })
 
 // listen to the server
-app.listen(port, () => {
-  console.log(`This app is listening to http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`This app is listening to http://localhost:${PORT}`)
 })
