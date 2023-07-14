@@ -44,6 +44,14 @@ app.get('/', (req, res) => {
     .then(restaurant => res.render('index', { restaurant }))
     .catch(err => console.log(err))
 })
+// search function
+app.get('/restaurants/search', (req, res) => {
+  const keyword = req.query.keyword
+  const filteredRestaurants = restaurantList.results.filter(restaurant =>
+    restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+  )
+  res.render('index', { restaurant: filteredRestaurants, keyword })
+})
 
 // render new page
 app.get('/restaurants/new', (req, res) => {
@@ -57,22 +65,14 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// show details
-/*app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(res => 
-    res.id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurant })
+// render detail page
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('detail', { restaurant }))
+    .catch(error => console.log(error))
 })
-
-// search function
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const filteredRestaurants = restaurantList.results.filter(restaurant => 
-    restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  )
-  res.render('index', { restaurant : filteredRestaurants, keyword })
-})*/
 
 // listen to the server
 app.listen(PORT, () => {
