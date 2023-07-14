@@ -38,7 +38,6 @@ app.use(express.static('public'))
 
 // set server
 app.get('/', (req, res) => {
-  const restaurant = restaurantList.results
   res.render('index', { restaurant })
 })
 
