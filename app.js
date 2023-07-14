@@ -30,18 +30,31 @@ db.once('open', () => {
 })
 
 // set engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
 
 // use static files
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
-// set server
+// render index page
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
     .catch(err => console.log(err))
+})
+
+// render new page
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+// post new restaurant
+app.post('/restaurants', (req, res) => {
+  const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 // show details

@@ -69,10 +69,10 @@ header {
   font-size: 0.8rem;
 }
 
-.restaurant-show-title {
+.add-new-restaurant {
   position: relative;
   top: -100px;
-  color: white;
+  color: #9b4b4b;
   text-align: center;
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

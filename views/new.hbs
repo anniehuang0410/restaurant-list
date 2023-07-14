@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center mx-5 row">
+  <h1 class="mb-1 add-new-restaurant">新增餐廳</h1>
+
+  <form action="/restaurants" method="POST" class="w-50 mt-2 px-5" id="input-container">
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">中文名稱</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="name" placeholder="請填入中文名稱">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">英文名稱</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="name_en" placeholder="請填入英文名稱">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">餐廳類型</span>
+      <input class="form-control" list="categoryDataList" id="categoryList" placeholder="請選擇或自行填入餐廳類型" name="category">
+      <datalist id="categoryDataList">
+        <option value="中東料理">
+        <option value="日本料理">
+        <option value="義式餐廳">
+        <option value="酒吧">
+        <option value="美式">
+      </datalist>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">圖片連結</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="image" placeholder="請輸入圖片地址">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">地址</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="location" placeholder="請輸入地址">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">聯絡電話</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="phone" placeholder="請輸入聯絡電話">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Google map</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="google_map" placeholder="請輸入google map 連結">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">評分</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="rating" placeholder="請以數字輸入評價(滿分5分)">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">描述</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="description" placeholder="請簡述餐廳特色及個人想法">
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center my-3">
+  <form action="/restaurants" method="POST">
+    <button type="submit" class="btn btn-secondary mx-2">新增</button>
+    <a href="/" class="btn btn-primary">返回</a>
+  </form>
+</div>
+
+</form>
