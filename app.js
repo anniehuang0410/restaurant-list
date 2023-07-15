@@ -41,6 +41,7 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
+    .sort({ rating: 'desc'})
     .then(restaurant => res.render('index', { restaurant }))
     .catch(err => console.log(err))
 })
