@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center mx-5 row">
   <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
-  <form action="/restaurants/{{restaurant._id}}/edit" method="POST" class="w-50 mt-2 px-5" id="input-container">
+  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" class="w-50 mt-2 px-5" id="input-container">
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">中文名稱</span>
       <input type="text" class="form-control" aria-label="Sizing example input"

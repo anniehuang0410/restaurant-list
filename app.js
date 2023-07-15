@@ -1,6 +1,7 @@
-// require express
+// require models
 const express = require('express')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 // 在非正式環境時使用 dotenv
 if(process.env.NODE_ENV !== 'production') {
@@ -33,9 +34,10 @@ db.once('open', () => {
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
-// use static files
+// use modules
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // render index page
 app.get('/', (req, res) => {
@@ -93,7 +95,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 // post edited info
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.findById(id)
@@ -114,7 +116,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // delete function
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
