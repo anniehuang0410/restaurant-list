@@ -70,12 +70,21 @@ header {
 }
 
 .restaurant-show-title {
+  padding: 2;
   position: relative;
   top: -100px;
   color: #9b4b4b;
+  /*background-color: #fce2cf;*/
   text-align: center;
   font-size: 3rem;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+.title-container {
+  position: relative;
+  background-color: #fce2cf;
+  max-width: 680px;
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 992px) {
