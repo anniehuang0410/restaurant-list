@@ -5,7 +5,8 @@ const Restaurant = require('../../models/restaurant')
 
 // render index page
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort({ rating: 'desc' })
     .then(restaurant => res.render('index', { restaurant }))
@@ -13,10 +14,11 @@ router.get('/', (req, res) => {
 })
 // search function
 router.get('/search', (req, res) => {
+  const userId = req.user._id
   const keyword = req.query.keyword
   const restaurant = []
 
-  return Restaurant.find()
+  return Restaurant.find({ userId })
     .lean()
     .sort({ rating: 'desc' })
     .then(restaurants => {
