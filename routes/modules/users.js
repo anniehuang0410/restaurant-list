@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 const router = express.Router()
 
 // require user Schema
@@ -55,15 +56,18 @@ router.post('/register', (req, res) => {
           errors, name, email, password, confirmPassword
         })
       // not registered: add info into database 
-      } else {
-        return User
+      } 
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User
           .create({
-            name, email, password
-          })
-          .then(() => res.redirect('/'))
-          .catch(err => console.log(err))  
+            name, email, password: hash
+          }))
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err))
       }
-    })
+    )
 })
 
 // logout
