@@ -15,7 +15,7 @@ require('./config/mongoose')
 const app = express()
 
 // port
-const PORT = 3000
+const PORT = process.env.PORT
 
 // require data
 const Restaurant = require('./models/restaurant')
@@ -29,7 +29,7 @@ app.set('view engine', 'hbs')
 
 // use cookie-session
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
