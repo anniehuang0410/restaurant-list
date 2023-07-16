@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
 
 // require user Schema
@@ -10,9 +11,10 @@ router.get('/login', (req, res) => {
 })
 
 // submit login info
-router.post('/login', (req, res) => {
-
-})
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+}))
 
 // render user register page
 router.get('/register', (req, res) => {
