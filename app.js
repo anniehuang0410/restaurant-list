@@ -1,5 +1,6 @@
 // require models
 const express = require('express')
+const session = require('express-session')
 const methodOverride = require('method-override')
 
 const routes = require('./routes')
@@ -20,6 +21,13 @@ const exphbs = require('express-handlebars')
 // set engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+// use cookie-session
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // use modules
 app.use(express.static('public'))
