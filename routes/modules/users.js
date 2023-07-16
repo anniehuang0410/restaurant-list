@@ -24,15 +24,35 @@ router.get('/register', (req, res) => {
 // submit register info
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+  // set error message
+  const errors = []
+  // email and password are required
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: '除姓名外的欄位都是必填。' })
+  }
+  // password and confirmPassword need to be the same
+  if (password !== confirmPassword) {
+    errors.push({ message: '密碼與確認密碼不相符！' })
+  }
+  // if no error
+  if (errors.length) {
+    return res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
   // check if this email is registered
   User.findOne({ email })
     .then(user => {
       // already registered
       if (user) {
-        console.log('User already existed.')
+        errors.push({ message: '這個 Email 已經註冊過了。' })
         // still on register page and show the typed info 
         res.render('register', {
-          name, email, password, confirmPassword
+          errors, name, email, password, confirmPassword
         })
       // not registered: add info into database 
       } else {
@@ -49,6 +69,7 @@ router.post('/register', (req, res) => {
 // logout
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
 
