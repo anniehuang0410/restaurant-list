@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 // flash message
 const flash = require('connect-flash')
 
+const handlebarsHelper = require('./config/handlebars-helper')
 const routes = require('./routes')
 
 const usePassport = require('./config/passport')

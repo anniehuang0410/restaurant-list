@@ -8,19 +8,20 @@ router.get('/', (req, res) => {
   const userId = req.user._id
   Restaurant.find({ userId })
     .lean()
-    .sort({ rating: 'desc' })
     .then(restaurant => res.render('index', { restaurant }))
     .catch(err => console.log(err))
 })
-// search function
+
+// search and sort function
 router.get('/search', (req, res) => {
   const userId = req.user._id
+  const sort = req.query.sort
   const keyword = req.query.keyword
   const restaurant = []
 
   return Restaurant.find({ userId })
     .lean()
-    .sort({ rating: 'desc' })
+    .sort(`${sort}`)
     .then(restaurants => {
       restaurants.filter(data => {
         if (data.name.toLowerCase().includes(keyword.trim().toLowerCase())) {

@@ -9,9 +9,10 @@ The webpage allows user creating accounts and shows their list of restaurants.
 + Show the restaurant list 
 + Press '登入/註冊' to login or register an account on this webpage
 + Allowed to login with the Facebook account
-+ Press '新增' button to add new items on the list 
-+ Press the name/image button to show more details about the restaurant
++ The list can be sorted by restaurant name, rating, and creating time
 + Type in the name of the restaurant in the search bar to get more information
++ Press the name/image button to show more details about the restaurant
++ Press '新增' button to add new items on the list 
 + Press '修改' button to edit the information
 + Press '刪除' button to delete the item 
 + Press '登出' to logout from your account

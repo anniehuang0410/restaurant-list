@@ -12,13 +12,29 @@
               <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
             </div>
           </div>
+          <!-- sort -->
+          <div class="d-flex justify-content-end">
+            <div class="input-group mt-2" style="max-width: 200px;">
+              <select class="form-select btn btn-outline-primary" aria-label="Default select example" name="sort"
+                onchange="this.form.submit()">
+                <option value="" {{#unless sort}} disabled {{/unless}} selected>選擇排序方式</option>
+                <option value="-_id" {{#is sort "-_id" }} selected {{/is}}>最新</option>
+                <option value="_id" {{#is sort "_id" }} selected {{/is}}>最舊</option>
+                <option value="-rating" {{#is sort "-rating" }} selected {{/is}}>評分高➡低</option>
+                <option value="rating" {{#is sort "rating" }} selected {{/is}}>評分低➡高</option>
+                <option value="name_en" {{#is sort "name_en" }} selected {{/is}}>A-Z</option>
+                <option value="-name_en" {{#is sort "-name_en" }} selected {{/is}}>Z-A</option>
+              </select>
+            </div>
+          </div> 
         </form>
       </div>
     </div>
   </div>
   
   <!-- restaurant list -->
-  <div class="container mt-5">
+  <div class="container my-5">
+    <!-- render restaurant list -->
     <div class="row">
       <div class="col-md-10 col-12 mx-auto">
         <div class="row row-cols-sm-3">
