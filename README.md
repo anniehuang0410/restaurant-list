@@ -18,8 +18,8 @@ The webpage allows user creating accounts and shows their list of restaurants.
 + Press '登出' to logout from your account
 
 ## Environment Setup
-+ ![MongoDB](https://www.mongodb.com/try/download/community) (later than v4.0)
-+ ![Node.js](https://nodejs.org/en)
++ [MongoDB](https://www.mongodb.com/try/download/community) (later than v4.0)
++ [Node.js](https://nodejs.org/en)
 
 ## Installation
 1. Turn on your terminal and clone this project to your local PC
