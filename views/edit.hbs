@@ -3,48 +3,67 @@
   <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" class="w-50 mt-2 px-5" id="input-container">
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">中文名稱</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="name" value="{{restaurant.name}}">
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="name" placeholder="請填入中文名稱" maxlength="15" required="required" value="{{restaurant.name}}">
     </div>
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">英文名稱</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="name_en" value="{{restaurant.name_en}}">
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="name_en" placeholder="請填入英文名稱" maxlength="30" oninput="setCustomValidity('');"
+        oninvalid="setCustomValidity('輸入英文或數字');" required="required" value="{{restaurant.name_en}}">
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">餐廳類型</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="category" value="{{restaurant.category}}">
+      <input class="form-control" list="categoryDataList" id="categoryList" placeholder="請選擇或自行填入餐廳類型" name="category"
+        maxlength="10" required="required" value="{{restaurant.category}}">
+      <datalist id="categoryDataList">
+        <option value="中東料理">
+        <option value="日本料理">
+        <option value="義式餐廳">
+        <option value="酒吧">
+        <option value="美式">
+      </datalist>
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">圖片連結</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="image" value="{{restaurant.image}}">
+      <input type="url" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="image" placeholder="請輸入圖片網址" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請依網址格式輸入');" value="{{restaurant.image}}">
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">地址</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="location" value="{{restaurant.location}}">
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="location" placeholder="請輸入地址" maxlength="30" value="{{restaurant.location}}">
     </div>
-    <div class="input-group mb-3">
+    
+    <div class="input-group mb-3 has-validation">
       <span class="input-group-text" id="inputGroup-sizing-default">聯絡電話</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="phone" value="{{restaurant.phone}}">
+      <input type="tel" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="phone" placeholder="(參考格式：02 2222 3333 或 0912345678)" maxlength="12" oninput="setCustomValidity('');"
+        oninvalid="setCustomValidity('請輸入數字');" value="{{restaurant.phone}}">
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">Google map</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="google_map" value="{{restaurant.google_map}}">
+      <input type="url" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="google_map" placeholder="請輸入google map 連結" oninput="setCustomValidity('');"
+        oninvalid="setCustomValidity('請輸入google map網址');" value="{{restaurant.google_map}}">
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">評分</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="rating" value="{{restaurant.rating}}">
+      <input type="number" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" name="rating" placeholder="請以數字輸入評價(滿分5分)" min="0.0" max="5.0"
+        step="0.1" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入介於0-5間的數值');" required="required" value="{{restaurant.rating}}">
     </div>
+    
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">描述</span>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" name="description" value="{{restaurant.description}}">
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+        name="description" placeholder="請簡述餐廳特色及個人想法(50字內)" maxlength="50" oninput="setCustomValidity('');"
+        oninvalid="setCustomValidity('字數限制為50字');" value="{{restaurant.description}}">
     </div>
 </div>
 <div class="container d-flex justify-content-center mb-3">
