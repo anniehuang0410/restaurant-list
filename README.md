@@ -1,4 +1,4 @@
-### Restaurant List
+# Restaurant List
 A simple webpage written in Express.js on Node.js. 
 The webpage allows user creating accounts and shows their list of restaurants. 
 

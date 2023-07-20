@@ -87,6 +87,17 @@ header {
   border-radius: 8px;
 }
 
+.new-item-container {
+  margin: 2px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+#add-button {
+  width: 140px;
+}
+
 @media screen and (max-width: 992px) {
 
   .card img {
